@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+skinparam classAttributeIconSize 0
+
+class Cinema {
+  - nome: std::string
+  - salas: std::vector<Sala>
+  + adicionarSala(sala: Sala): void
+  + listarSalas(): void
+}
+
+class Sala {
+  - numero: int
+  - capacidade: int
+  - assentos: std::vector<Assento>
+  + verificarDisponibilidade(): int
+  + reservarAssento(numeroAssento: int): bool
+}
+
+class Assento {
+  - numero: int
+  - reservado: bool
+  + reservar(): bool
+  + liberar(): void
+  + estaReservado(): bool
+}
+
+class Filme {
+  - titulo: std::string
+  - duracaoMin: int
+  - genero: std::string
+  - classificacao: std::string
+}
+
+class Sessao {
+  - id: int
+  - horario: std::string
+  - preco: double
+  + reservarLugar(numeroAssento: int): bool
+  + lugaresDisponiveis(): int
+}
+
+class Cliente {
+  - nome: std::string
+  - email: std::string
+}
+
+class Reserva {
+  - id: int
+  - data: std::string
+  - estado: std::string
+  + confirmar(): void
+  + cancelar(): void
+}
+
+Cinema "1" o-- "*" Sala
+Sala "1" o-- "*" Assento
+Sala "1" <-- "*" Sessao
+Filme "1" <-- "*" Sessao
+Cliente "1" --> "*" Reserva
+Sessao "1" --> "*" Reserva
+Reserva "1" --> "1" Assento
+
+
+@enduml

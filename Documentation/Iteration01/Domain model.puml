@@ -1,0 +1,66 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+
+class User {
+  username : string
+  email : string
+  password : string
+}
+
+class Movie {
+  title : string
+  genre : string
+  duration : int
+  rating : string
+  synopsis : string
+}
+
+class Session {
+  dateTime : datetime
+}
+
+class Seat {
+  row : string
+  number : int
+  type : string
+}
+
+class Price {
+  amount : double
+  seatType : string
+  promotion : string
+}
+
+class Reservation {
+  reservationDate : datetime
+  numberOfTickets : int
+  totalPrice : double
+  bookingReference : string
+  status : string
+}
+
+class Ticket {
+  price : double
+  seatType : string
+}
+
+class Payment {
+  amount : double
+  method : string
+  status : string
+  paymentDate : datetime
+}
+
+User "1" -- "*" Reservation : makes
+Reservation "1" -- "1" Session : for
+Reservation "1" -- "1..*" Ticket : generates
+Reservation "1" -- "1" Payment : paid by
+
+Session "*" -- "1" Movie : shows
+Session "1" -- "*" Seat : uses
+
+Ticket "1" -- "1" Seat : assigned to
+Ticket "*" -- "1" Price : based on
+
+@enduml
