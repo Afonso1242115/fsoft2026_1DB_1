@@ -18,9 +18,9 @@ public:
     User(const std::string& username, const std::string& email, const std::string& password);
 
     //Getters
-    std::string getUsername() const;
-    std::string getEmail() const;
-    std::string getPassword() const;
+    [[nodiscard]] std::string getUsername() const;
+    [[nodiscard]] std::string getEmail() const;
+    [[nodiscard]] std::string getPassword() const;
 
     //Setters
     void setUsername(const std::string& username);
@@ -28,6 +28,6 @@ public:
     void setPassword(const std::string& password);
 
     //Methods
-    bool authenticate(const std::string& inputPassword) const;
+    [[nodiscard]] bool authenticate(const std::string& inputPassword) const;
 };
 #endif //USER_H

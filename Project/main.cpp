@@ -1,7 +1,8 @@
-//
-// Created by kikok on 19/03/2026.
-//
-
+#include <string>
 #include <iostream>
-#include "Controler.h"
-#include "MockData.h"
+
+int main() {
+    std::string test = "Hello";
+    std::cout << test << std::endl;
+    return 0;
+}

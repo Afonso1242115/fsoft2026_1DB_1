@@ -1,4 +1,4 @@
-#include "User.h"
+#include "user.h"
 
 // Default constructor
 User::User() : username(""), email(""), password("") {}
