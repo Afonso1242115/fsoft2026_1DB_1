@@ -3,19 +3,11 @@ project(MovieTicketSystem LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(MovieTicketSystem
         main.cpp
-
-        headers/model/user.h
-        headers/model/administrator.h
-        headers/model/movies.h
-        headers/model/seat.h
-
-        classes/model/user.cpp
-        classes/model/administrator.cpp
-        classes/model/movies.cpp
-        classes/model/seat.cpp
+        classes/model/User.cpp
 )
 
 target_include_directories(MovieTicketSystem PRIVATE

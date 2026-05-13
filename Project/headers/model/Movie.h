@@ -1,0 +1,8 @@
+//
+// Created by Afonso on 13/05/2026.
+//
+
+#ifndef MOVIETICKETSYSTEM_MOVIE_H
+#define MOVIETICKETSYSTEM_MOVIE_H
+
+#endif //MOVIETICKETSYSTEM_MOVIE_H
