@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(MovieTicketSystem
         main.cpp
-        classes/model/User.cpp
+        sources/model/User.cpp
 )
 
 target_include_directories(MovieTicketSystem PRIVATE

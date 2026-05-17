@@ -5,40 +5,29 @@
 
 class User {
 private:
-    int id; //cada user tem um identifier único
-    std::string name;
+    int id;
+    std::string username;
     std::string email;
     std::string password;
-
-
+    int failedAttempts;
+    bool locked;
 
 public:
-    //constructor usado para criar um user válido
-    User(int id, const std::string& name, const std::string& email, const std::string& password);
-    User(const User& user) = default;
-    ~User() = default;
+    User(int id, const std::string& username,
+         const std::string& email, const std::string& password);
 
-    //são static para validar os dados antes de criar o objeto User
-    static bool isNameValid(const std::string& name);
-    static bool isEmailValid(const std::string& email);
-    static bool isPasswordValid(const std::string& password);
-
-    //Getters
     int getId() const;
-    const std::string& getName() const;
-    const std::string& getEmail() const;
+    std::string getUsername() const;
+    std::string getEmail() const;
+    bool isLocked() const;
 
+    bool checkPassword(const std::string& password);
+    void registerFailedAttempt();
+    void resetAttempts();
 
-    //Setters, validam os dados antes de mudar o objeto
-    void setName(const std::string& name);
-    void setEmail(const std::string& email);
-    void setPassword(const std::string& password);
+    static bool validatePassword(const std::string& password);
+    static bool validateEmail(const std::string& email);
 
-    //operators usados para comparar e/ou procurar users
-    bool operator==(int id) const;
-    bool operator==(const std::string& email) const;
-
-    bool checkPassword(const std::string& password) const; //usado durante o login
+    std::string toString() const;
 };
-
 #endif
