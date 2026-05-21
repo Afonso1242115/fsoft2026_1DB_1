@@ -14,7 +14,7 @@
 #include "reservationController.h"
 #include <vector>
 
-class Controller {
+class MainController {
 private:
     Cinema model;
     std::vector<User> users;
@@ -29,7 +29,7 @@ private:
     void seedData();
 
 public:
-    Controller();
+    MainController();
     void run();
 };
 #endif //CONTROLLER_H

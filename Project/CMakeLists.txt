@@ -8,6 +8,14 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(MovieTicketSystem
         main.cpp
         sources/model/User.cpp
+        headers/views/authView.h
+        sources/Views/authViews.cpp
+        headers/controllers/AuthController.h
+        sources/controllers/AuthController.cpp
+        headers/views/reservationView.h
+        sources/views/ReservationView.cpp
+        headers/controllers/ReservationController.h
+        sources/controllers/ReservationController.cpp
 )
 
 target_include_directories(MovieTicketSystem PRIVATE
