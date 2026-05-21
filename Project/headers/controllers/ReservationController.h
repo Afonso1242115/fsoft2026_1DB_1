@@ -6,7 +6,7 @@
 #include "../model/Session.h"
 #include "../model/Ticket.h"
 #include "../model/Payment.h"
-#include "../view/ReservationView.h"
+#include "../views/ReservationView.h"
 #include <string>
 #include <vector>
 

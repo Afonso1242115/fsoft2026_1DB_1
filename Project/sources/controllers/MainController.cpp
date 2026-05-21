@@ -1,4 +1,4 @@
-#include "../../headers/controller/MainController.h"
+#include "../../headers/controllers/MainController.h"
 
 MainController::MainController()
     : loggedUser(nullptr),

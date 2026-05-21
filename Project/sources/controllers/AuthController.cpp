@@ -1,4 +1,4 @@
-#include "../../headers/controller/AuthController.h"
+#include "../../headers/controllers/AuthController.h"
 
 AuthController::AuthController(UserContainer& userContainer)
     : userContainer(userContainer) {

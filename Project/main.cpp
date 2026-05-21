@@ -1,25 +1,8 @@
-#include "User.h"
-#include <iostream>
-#include <exception>
+#include "headers/controller/MainController.h"
 
 int main() {
-    try {
-        //teste
-        User user(1, "Afonso", "afonso@email.com", "Password1");
-
-        std::cout << "User created successfully!\n";
-        std::cout << "Name: " << user.getName() << "\n";
-        std::cout << "Email: " << user.getEmail() << "\n";
-
-        if (user.checkPassword("Password1")) {
-            std::cout << "Password is correct.\n";
-        } else {
-            std::cout << "Password is incorrect.\n";
-        }
-
-    } catch (const std::exception& exception) {
-        std::cout << "Error: " << exception.what() << "\n";
-    }
+    MainController controller;
+    controller.run();
 
     return 0;
 }

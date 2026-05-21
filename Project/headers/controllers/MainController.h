@@ -2,9 +2,9 @@
 #define MAINCONTROLLER_H
 
 #include "../model/Cinema.h"
-#include "../model/UserContainer.h"
+
 #include "../model/User.h"
-#include "../view/MainView.h"
+#include "../views/MainView.h"
 #include "AuthController.h"
 #include "ReservationController.h"
 

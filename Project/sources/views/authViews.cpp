@@ -1,4 +1,4 @@
-#include "../../headers/view/AuthView.h"
+#include "../../headers/views/AuthView.h"
 #include <iostream>
 
 std::string AuthView::readString(const std::string& message) const {
