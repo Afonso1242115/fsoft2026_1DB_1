@@ -1,35 +1,30 @@
-//
-// Created by kikok on 16/05/2026.
-//
+#ifndef MAINCONTROLLER_H
+#define MAINCONTROLLER_H
 
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
 #include "../model/Cinema.h"
+#include "../model/UserContainer.h"
 #include "../model/User.h"
-#include "../model/Reservation.h"
-#include "../views/mainView.h"
-#include "movieController.h"
-#include "sessionController.h"
-#include "userController.h"
-#include "reservationController.h"
-#include <vector>
+#include "../view/MainView.h"
+#include "AuthController.h"
+#include "ReservationController.h"
 
 class MainController {
 private:
-    Cinema model;
-    std::vector<User> users;
-    std::vector<Reservation> reservations;
+    Cinema cinema;
+    UserContainer userContainer;
+    User* loggedUser;
 
     MainView view;
-    MovieController movieController;
-    SessionController sessionController;
-    UserController userController;
+    AuthController authController;
     ReservationController reservationController;
 
-    void seedData();
+    void mainMenu();
+    void authenticatedMenu();
 
 public:
     MainController();
+
     void run();
 };
-#endif //CONTROLLER_H
+
+#endif

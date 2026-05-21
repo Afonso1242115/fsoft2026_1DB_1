@@ -16,6 +16,7 @@ add_executable(MovieTicketSystem
         sources/views/ReservationView.cpp
         headers/controllers/ReservationController.h
         sources/controllers/ReservationController.cpp
+        sources/controllers/MainController.cpp
 )
 
 target_include_directories(MovieTicketSystem PRIVATE
