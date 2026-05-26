@@ -1,12 +1,10 @@
-#include "../../headers/views/AuthView.h"
+#include "AuthView.h"
 #include <iostream>
 
 std::string AuthView::readString(const std::string& message) const {
     std::string value;
-
     std::cout << message;
     std::getline(std::cin, value);
-
     return value;
 }
 
@@ -43,8 +41,7 @@ void AuthView::showInvalidEmail() const {
 }
 
 void AuthView::showInvalidPassword() const {
-    std::cout << "Password must have at least 8 characters, "
-              << "one uppercase letter, one lowercase letter and one number.\n";
+    std::cout << "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.\n";
 }
 
 void AuthView::showRegisterSuccess() const {

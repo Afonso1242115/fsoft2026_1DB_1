@@ -1,8 +1,8 @@
 #ifndef AUTHVIEW_H
 #define AUTHVIEW_H
 
+#include "User.h"
 #include <string>
-#include "../model/User.h"
 
 class AuthView {
 private:

@@ -1,10 +1,9 @@
-#include "../../headers/controllers/MainController.h"
+#include "MainController.h"
+#include <exception>
 
 MainController::MainController()
     : loggedUser(nullptr),
-      authController(userContainer),
-      reservationController(cinema) {
-    cinema.seedData();
+      authController(userContainer) {
 }
 
 void MainController::mainMenu() {
@@ -21,11 +20,7 @@ void MainController::mainMenu() {
 
                 case 2:
                     loggedUser = authController.loginUser();
-
-                    if (loggedUser != nullptr) {
-                        authenticatedMenu();
-                    }
-
+                    userMenu();
                     break;
 
                 case 0:
@@ -43,33 +38,31 @@ void MainController::mainMenu() {
     } while (option != 0);
 }
 
-void MainController::authenticatedMenu() {
+void MainController::userMenu() {
     int option = 0;
 
     do {
-        option = view.askAuthenticatedMenuOption();
+        option = view.askUserMenuOption();
 
-        try {
-            switch (option) {
-                case 1:
-                    reservationController.makeReservation(loggedUser);
-                    break;
+        switch (option) {
+            case 1:
+                view.showHeader("Reservation Screen");
 
-                case 2:
-                    reservationController.showUserReservations(loggedUser);
-                    break;
+                break;
 
-                case 3:
-                    loggedUser = nullptr;
-                    view.showLogoutMessage();
-                    break;
+            case 2:
+                view.showHeader("Ticket Screen");
 
-                default:
-                    view.showInvalidOption();
-                    break;
-            }
-        } catch (const std::exception& exception) {
-            view.showError(exception.what());
+                break;
+
+            case 3:
+                loggedUser = nullptr;
+                view.showLogoutMessage();
+                break;
+
+            default:
+                view.showInvalidOption();
+                break;
         }
 
     } while (loggedUser != nullptr);

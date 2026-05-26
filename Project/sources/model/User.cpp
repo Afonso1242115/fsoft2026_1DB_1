@@ -1,53 +1,103 @@
-#include "../../headers/model/User.h"
-#include <sstream>
-#include <cctype>
+#include "User.h"
+#include "Exceptions.h"
 
-User::User(int id, const std::string& username,
-           const std::string& email, const std::string& password)
-    : id(id), username(username), email(email),
-      password(password), failedAttempts(0), locked(false) {}
+// Constructor: creates a user with valid data only.
+User::User(int id,
+           const std::string& name,
+           const std::string& email,
+           const std::string& password) {
+    this->id = id;
 
-int User::getId() const { return id; }
-std::string User::getUsername() const { return username; }
-std::string User::getEmail() const { return email; }
-bool User::isLocked() const { return locked; }
-
-bool User::checkPassword(const std::string& pw) {
-    return password == pw;
+    // Use setters so validation is always applied.
+    setName(name);
+    setEmail(email);
+    setPassword(password);
 }
 
-void User::registerFailedAttempt() {
-    failedAttempts++;
-    if (failedAttempts >= 3) locked = true;
+// Rule: name must have at least 3 characters.
+bool User::isNameValid(const std::string& name) {
+    return name.length() >= 3;
 }
 
-void User::resetAttempts() {
-    failedAttempts = 0;
-    locked = false;
+// Simple email rule: must contain '@' and '.'.
+bool User::isEmailValid(const std::string& email) {
+    return email.find('@') != std::string::npos &&
+           email.find('.') != std::string::npos;
 }
 
-bool User::validatePassword(const std::string& pw) {
-    if (pw.size() < 8) return false;
-    bool hasUpper = false, hasLower = false, hasDigit = false;
-    for (char c : pw) {
-        if (std::isupper(c)) hasUpper = true;
-        if (std::islower(c)) hasLower = true;
-        if (std::isdigit(c)) hasDigit = true;
+// Password rules:
+// - at least 8 characters
+// - at least one uppercase letter
+// - at least one lowercase letter
+// - at least one number
+bool User::isPasswordValid(const std::string& password) {
+    if (password.length() < 8) {
+        return false;
     }
-    return hasUpper && hasLower && hasDigit;
+
+    bool hasUppercase = false;
+    bool hasLowercase = false;
+    bool hasNumber = false;
+
+    for (char character : password) {
+        if (character >= 'A' && character <= 'Z') {
+            hasUppercase = true;
+        } else if (character >= 'a' && character <= 'z') {
+            hasLowercase = true;
+        } else if (character >= '0' && character <= '9') {
+            hasNumber = true;
+        }
+    }
+
+    return hasUppercase && hasLowercase && hasNumber;
 }
 
-bool User::validateEmail(const std::string& email) {
-    auto at = email.find('@');
-    if (at == std::string::npos || at == 0) return false;
-    auto dot = email.find('.', at);
-    return dot != std::string::npos && dot < email.size() - 1;
+int User::getId() const {
+    return id;
 }
 
-std::string User::toString() const {
-    std::ostringstream oss;
-    oss << "[" << id << "] " << username << " <" << email << ">";
-    return oss.str();
+const std::string& User::getName() const {
+    return name;
 }
 
+const std::string& User::getEmail() const {
+    return email;
+}
 
+void User::setName(const std::string& name) {
+    if (!isNameValid(name)) {
+        throw InvalidDataException("Name must have at least 3 characters");
+    }
+
+    this->name = name;
+}
+
+void User::setEmail(const std::string& email) {
+    if (!isEmailValid(email)) {
+        throw InvalidDataException("Email must contain @ and .");
+    }
+
+    this->email = email;
+}
+
+void User::setPassword(const std::string& password) {
+    if (!isPasswordValid(password)) {
+        throw InvalidDataException(
+            "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number"
+        );
+    }
+
+    this->password = password;
+}
+
+bool User::checkPassword(const std::string& password) const {
+    return this->password == password;
+}
+
+bool User::operator==(int id) const {
+    return this->id == id;
+}
+
+bool User::operator==(const std::string& email) const {
+    return this->email == email;
+}

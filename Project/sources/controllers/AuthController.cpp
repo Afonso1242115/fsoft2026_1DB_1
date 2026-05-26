@@ -1,4 +1,4 @@
-#include "../../headers/controllers/AuthController.h"
+#include "AuthController.h"
 
 AuthController::AuthController(UserContainer& userContainer)
     : userContainer(userContainer) {
@@ -11,6 +11,7 @@ void AuthController::registerUser() {
 
     view.showRegisterHeader();
 
+    // Stay in this loop until the name is valid.
     while (true) {
         name = view.askName();
 
@@ -21,6 +22,7 @@ void AuthController::registerUser() {
         view.showInvalidName();
     }
 
+    // Stay in this loop until the email is valid.
     while (true) {
         email = view.askEmail();
 
@@ -31,6 +33,7 @@ void AuthController::registerUser() {
         view.showInvalidEmail();
     }
 
+    // Stay in this loop until the password is valid.
     while (true) {
         password = view.askPassword();
 
@@ -42,7 +45,6 @@ void AuthController::registerUser() {
     }
 
     userContainer.add(name, email, password);
-
     view.showRegisterSuccess();
 }
 
@@ -53,7 +55,6 @@ User* AuthController::loginUser() {
     std::string password = view.askPassword();
 
     User* user = userContainer.login(email, password);
-
     view.showLoginSuccess(user);
 
     return user;

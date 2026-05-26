@@ -1,9 +1,8 @@
 #ifndef AUTHCONTROLLER_H
 #define AUTHCONTROLLER_H
 
-
-#include "../model/User.h"
-#include "../views/AuthView.h"
+#include "UserContainer.h"
+#include "AuthView.h"
 
 class AuthController {
 private:
@@ -11,7 +10,7 @@ private:
     AuthView view;
 
 public:
-    AuthController(UserContainer& userContainer);
+    explicit AuthController(UserContainer& userContainer);
 
     void registerUser();
     User* loginUser();
