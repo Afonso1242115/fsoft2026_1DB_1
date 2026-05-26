@@ -3,14 +3,21 @@
 
 MainController::MainController()
     : loggedUser(nullptr),
-      authController(userContainer) {
+      authController(userContainer),
+      reservationController(cinema) {
+    cinema.seedData();
+}
+
+void MainController::run() {
+    mainView.showWelcome();
+    mainMenu();
 }
 
 void MainController::mainMenu() {
     int option = 0;
 
     do {
-        option = view.askMainMenuOption();
+        option = mainView.askMainMenuOption();
 
         try {
             switch (option) {
@@ -20,55 +27,56 @@ void MainController::mainMenu() {
 
                 case 2:
                     loggedUser = authController.loginUser();
-                    userMenu();
+
+                    if (loggedUser != nullptr) {
+                        authenticatedMenu();
+                    }
+
                     break;
 
                 case 0:
-                    view.showGoodbye();
+                    mainView.showGoodbye();
                     break;
 
                 default:
-                    view.showInvalidOption();
+                    mainView.showInvalidOption();
                     break;
             }
         } catch (const std::exception& exception) {
-            view.showError(exception.what());
+            mainView.showError(exception.what());
         }
 
     } while (option != 0);
 }
 
-void MainController::userMenu() {
+void MainController::authenticatedMenu() {
     int option = 0;
 
     do {
-        option = view.askUserMenuOption();
+        option = mainView.askAuthenticatedMenuOption();
 
-        switch (option) {
-            case 1:
-                view.showHeader("Reservation Screen");
+        try {
+            switch (option) {
+                case 1:
+                    reservationController.makeReservation(loggedUser);
+                    break;
 
-                break;
+                case 2:
+                    reservationController.viewMyReservations(loggedUser);
+                    break;
 
-            case 2:
-                view.showHeader("Ticket Screen");
+                case 3:
+                    loggedUser = nullptr;
+                    mainView.showLogoutMessage();
+                    break;
 
-                break;
-
-            case 3:
-                loggedUser = nullptr;
-                view.showLogoutMessage();
-                break;
-
-            default:
-                view.showInvalidOption();
-                break;
+                default:
+                    mainView.showInvalidOption();
+                    break;
+            }
+        } catch (const std::exception& exception) {
+            mainView.showError(exception.what());
         }
 
     } while (loggedUser != nullptr);
-}
-
-void MainController::run() {
-    view.showWelcome();
-    mainMenu();
 }
