@@ -10,14 +10,13 @@ private:
 
 public:
     void showWelcome() const;
-    void showHeader(const std::string& title) const;
 
     int askMainMenuOption() const;
-    int askUserMenuOption() const;
+    int askAuthenticatedMenuOption() const;
 
     void showInvalidOption() const;
-    void showLogoutMessage() const;
     void showGoodbye() const;
+    void showLogoutMessage() const;
     void showError(const std::string& message) const;
 };
 

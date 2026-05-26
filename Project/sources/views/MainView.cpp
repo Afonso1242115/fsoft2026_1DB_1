@@ -19,6 +19,7 @@ int MainView::readInt(const std::string& message) const {
 
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
         std::cout << "Please enter a valid number.\n";
     }
 }
@@ -30,18 +31,16 @@ void MainView::showWelcome() const {
     std::cout << "|                                            |\n";
     std::cout << "|                                            |\n";
     std::cout << "|                                            |\n";
+    std::cout << "|                                            |\n";
     printLine('=');
 }
 
-void MainView::showHeader(const std::string& title) const {
-    std::cout << '\n';
-    printLine('-');
-    std::cout << title << '\n';
-    printLine('-');
-}
-
 int MainView::askMainMenuOption() const {
-    showHeader("Main Menu");
+    std::cout << "\n";
+    printLine('-');
+    std::cout << "Main Menu\n";
+    printLine('-');
+
     std::cout << "1 - Register\n";
     std::cout << "2 - Login\n";
     std::cout << "0 - Exit\n";
@@ -49,10 +48,14 @@ int MainView::askMainMenuOption() const {
     return readInt("Option: ");
 }
 
-int MainView::askUserMenuOption() const {
-    showHeader("User Menu");
-    std::cout << "1 - Reservation screen\n";
-    std::cout << "2 - Ticket screen\n";
+int MainView::askAuthenticatedMenuOption() const {
+    std::cout << "\n";
+    printLine('-');
+    std::cout << "Movie Ticket Reservation\n";
+    printLine('-');
+
+    std::cout << "1 - Make reservation\n";
+    std::cout << "2 - View my reservations\n";
     std::cout << "3 - Logout\n";
 
     return readInt("Option: ");
@@ -62,12 +65,12 @@ void MainView::showInvalidOption() const {
     std::cout << "Invalid option.\n";
 }
 
-void MainView::showLogoutMessage() const {
-    std::cout << "Logged out. See you soon.\n";
-}
-
 void MainView::showGoodbye() const {
     std::cout << "Goodbye.\n";
+}
+
+void MainView::showLogoutMessage() const {
+    std::cout << "Logged out. See you soon.\n";
 }
 
 void MainView::showError(const std::string& message) const {
