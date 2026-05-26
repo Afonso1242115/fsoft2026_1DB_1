@@ -10,12 +10,16 @@ add_executable(MovieTicketSystem
 
         sources/controllers/MainController.cpp
         sources/controllers/AuthController.cpp
+        sources/controllers/ReservationController.cpp
 
         sources/views/MainView.cpp
         sources/views/AuthView.cpp
+        sources/views/ReservationView.cpp
 
         sources/model/User.cpp
         sources/model/UserContainer.cpp
+        sources/model/Cinema.cpp
+        sources/views/ReservationView.cpp
 )
 
 target_include_directories(MovieTicketSystem PRIVATE

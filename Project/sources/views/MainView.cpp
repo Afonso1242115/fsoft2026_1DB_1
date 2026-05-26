@@ -26,7 +26,7 @@ int MainView::readInt(const std::string& message) const {
 void MainView::showWelcome() const {
     printLine('=');
     std::cout << "|                                            |\n";
-    std::cout << "|        WELCOME TO LETI CINEMA              |\n";
+    std::cout << "|           WELCOME TO LETI CINEMA           |\n";
     std::cout << "|                                            |\n";
     std::cout << "|                                            |\n";
     std::cout << "|                                            |\n";
