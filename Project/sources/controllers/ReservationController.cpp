@@ -4,6 +4,18 @@ ReservationController::ReservationController(Cinema& cinema)
     : cinema(cinema) {
 }
 
+Movie* ReservationController::selectMovie() {
+    reservationView.showMovies(cinema.getMovies());
+
+    int movieId = reservationView.askMovieId();
+
+    Movie* movie = cinema.getMovieById(movieId);
+
+    reservationView.showSelectedMovie(movie);
+
+    return movie;
+}
+
 void ReservationController::makeReservation(User* loggedUser) {
     reservationView.showReservationHeader();
 
@@ -12,6 +24,8 @@ void ReservationController::makeReservation(User* loggedUser) {
         return;
     }
 
+    Movie* movie = selectMovie();
+
 
 }
 
@@ -19,4 +33,4 @@ void ReservationController::viewMyReservations(User* loggedUser) const {
     reservationView.showMyReservationsHeader();
 
     cinema.listReservationsByUser(loggedUser);
-}   
+}

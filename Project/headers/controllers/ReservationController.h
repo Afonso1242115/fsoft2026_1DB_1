@@ -3,12 +3,15 @@
 
 #include "Cinema.h"
 #include "User.h"
+#include "Movie.h"
 #include "ReservationView.h"
 
 class ReservationController {
 private:
     Cinema& cinema;
     ReservationView reservationView;
+
+    Movie* selectMovie();
 
 public:
     ReservationController(Cinema& cinema);

@@ -12,6 +12,7 @@ add_executable(MovieTicketSystem
         sources/controllers/AuthController.cpp
         sources/controllers/ReservationController.cpp
 
+
         sources/views/MainView.cpp
         sources/views/AuthView.cpp
         sources/views/ReservationView.cpp
