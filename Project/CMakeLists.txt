@@ -19,7 +19,7 @@ add_executable(MovieTicketSystem
         sources/model/User.cpp
         sources/model/UserContainer.cpp
         sources/model/Cinema.cpp
-        sources/views/ReservationView.cpp
+        sources/model/Movie.cpp
 )
 
 target_include_directories(MovieTicketSystem PRIVATE
