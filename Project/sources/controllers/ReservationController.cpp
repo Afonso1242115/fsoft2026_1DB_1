@@ -1,4 +1,5 @@
 #include "ReservationController.h"
+#include "Exceptions.h"
 
 ReservationController::ReservationController(Cinema& cinema)
     : cinema(cinema) {
@@ -16,6 +17,28 @@ Movie* ReservationController::selectMovie() {
     return movie;
 }
 
+Session* ReservationController::selectSession(Movie* movie) {
+    std::vector<Session> sessions = cinema.getSessionsByMovie(movie->getId());
+
+    if (sessions.empty()) {
+        throw NotFoundException("No sessions found for this movie");
+    }
+
+    reservationView.showSessions(sessions);
+
+    int sessionId = reservationView.askSessionId();
+
+    Session* session = cinema.getSessionById(sessionId);
+
+    if (session->getMovieId() != movie->getId()) {
+        throw InvalidDataException("This session does not belong to the selected movie");
+    }
+
+    reservationView.showSelectedSession(session);
+
+    return session;
+}
+
 void ReservationController::makeReservation(User* loggedUser) {
     reservationView.showReservationHeader();
 
@@ -25,6 +48,8 @@ void ReservationController::makeReservation(User* loggedUser) {
     }
 
     Movie* movie = selectMovie();
+
+    Session* session = selectSession(movie);
 
 
 }

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "Movie.h"
+#include "Session.h"
 
 class ReservationView {
 private:
@@ -17,6 +18,10 @@ public:
     void showMovies(const std::vector<Movie>& movies) const;
     int askMovieId() const;
     void showSelectedMovie(const Movie* movie) const;
+
+    void showSessions(const std::vector<Session>& sessions) const;
+    int askSessionId() const;
+    void showSelectedSession(const Session* session) const;
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include "ReservationView.h"
 #include <iostream>
 #include <limits>
+#include <iomanip>
 
 int ReservationView::readInt(const std::string& message) const {
     int value;
@@ -61,4 +62,34 @@ void ReservationView::showSelectedMovie(const Movie* movie) const {
               << movie->getTitle()
               << " (" << movie->getGenre() << ", "
               << movie->getDurationMinutes() << " min)\n";
+}
+
+void ReservationView::showSessions(const std::vector<Session>& sessions) const {
+    std::cout << "\nAvailable sessions:\n";
+
+    for (const Session& session : sessions) {
+        std::cout << session.getId() << " - "
+                  << session.getTime()
+                  << " | " << session.getRoom()
+                  << " | EUR " << std::fixed << std::setprecision(2)
+                  << session.getBasePrice()
+                  << "\n";
+    }
+}
+
+int ReservationView::askSessionId() const {
+    return readInt("Choose session id: ");
+}
+
+void ReservationView::showSelectedSession(const Session* session) const {
+    if (session == nullptr) {
+        return;
+    }
+
+    std::cout << "\nSelected session: "
+              << session->getTime()
+              << " | " << session->getRoom()
+              << " | EUR " << std::fixed << std::setprecision(2)
+              << session->getBasePrice()
+              << "\n";
 }

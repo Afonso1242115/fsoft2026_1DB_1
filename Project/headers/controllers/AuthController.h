@@ -2,7 +2,7 @@
 #define AUTHCONTROLLER_H
 
 #include "UserContainer.h"
-#include "AuthView.h"
+#include "../views/AuthView.h"
 
 class AuthController {
 private:

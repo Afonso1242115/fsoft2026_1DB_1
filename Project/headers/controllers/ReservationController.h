@@ -4,6 +4,7 @@
 #include "Cinema.h"
 #include "User.h"
 #include "Movie.h"
+#include "Session.h"
 #include "ReservationView.h"
 
 class ReservationController {
@@ -12,6 +13,7 @@ private:
     ReservationView reservationView;
 
     Movie* selectMovie();
+    Session* selectSession(Movie* movie);
 
 public:
     ReservationController(Cinema& cinema);

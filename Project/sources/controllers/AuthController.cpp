@@ -11,7 +11,7 @@ void AuthController::registerUser() {
 
     view.showRegisterHeader();
 
-    // Stay in this loop until the name is valid.
+    //stays in this loop until the name is valid.
     while (true) {
         name = view.askName();
 
@@ -22,7 +22,7 @@ void AuthController::registerUser() {
         view.showInvalidName();
     }
 
-    // Stay in this loop until the email is valid.
+    //stays in this loop until the email is valid.
     while (true) {
         email = view.askEmail();
 
@@ -33,7 +33,7 @@ void AuthController::registerUser() {
         view.showInvalidEmail();
     }
 
-    // Stay in this loop until the password is valid.
+    //stays in this loop until the password is valid.
     while (true) {
         password = view.askPassword();
 
