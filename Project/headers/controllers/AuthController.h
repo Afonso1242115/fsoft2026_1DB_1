@@ -1,19 +1,20 @@
 #ifndef AUTHCONTROLLER_H
 #define AUTHCONTROLLER_H
 
-#include "UserContainer.h"
-#include "../views/AuthView.h"
+#include "AuthService.h"
+#include "AuthView.h"
+#include "UserDTO.h"
 
 class AuthController {
 private:
-    UserContainer& userContainer;
-    AuthView view;
+    AuthService& authService;
+    AuthView authView;
 
 public:
-    explicit AuthController(UserContainer& userContainer);
+    AuthController(AuthService& authService);
 
     void registerUser();
-    User* loginUser();
+    UserDTO loginUser();
 };
 
 #endif

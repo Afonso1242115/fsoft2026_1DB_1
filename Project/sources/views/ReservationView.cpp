@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 #include <iomanip>
+#include "Seat.h"
 
 int ReservationView::readInt(const std::string& message) const {
     int value;
@@ -92,4 +93,69 @@ void ReservationView::showSelectedSession(const Session* session) const {
               << " | EUR " << std::fixed << std::setprecision(2)
               << session->getBasePrice()
               << "\n";
+}
+int ReservationView::askTicketQuantity() const {
+    return readInt("How many tickets do you want? ");
+}
+
+std::string ReservationView::askSeatCode(int seatNumber) const {
+    std::string seatCode;
+
+    std::cout << "Choose seat " << seatNumber << ": ";
+    std::getline(std::cin, seatCode);
+
+    return seatCode;
+}
+
+void ReservationView::showSeats(const std::vector<Seat>& seats,
+                                const std::vector<std::string>& selectedSeats) const {
+    std::cout << "\nSeat map:\n";
+
+    int count = 0;
+
+    for (const Seat& seat : seats) {
+        bool selected = false;
+
+        for (const std::string& selectedSeat : selectedSeats) {
+            if (selectedSeat == seat.getCode()) {
+                selected = true;
+            }
+        }
+
+        if (seat.isReserved()) {
+            std::cout << "[XX] ";
+        } else if (selected) {
+            std::cout << "[**] ";
+        } else {
+            std::cout << "[" << seat.getCode() << "] ";
+        }
+
+        count++;
+
+        if (count % 4 == 0) {
+            std::cout << "\n";
+        }
+    }
+}
+
+void ReservationView::showSelectedSeats(const std::vector<std::string>& selectedSeats) const {
+    std::cout << "\nSelected seats: ";
+
+    if (selectedSeats.empty()) {
+        std::cout << "none";
+    } else {
+        for (const std::string& seatCode : selectedSeats) {
+            std::cout << seatCode << " ";
+        }
+    }
+
+    std::cout << "\n";
+}
+
+void ReservationView::showSeatSelected(const std::string& seatCode) const {
+    std::cout << "Seat " << seatCode << " selected.\n";
+}
+
+void ReservationView::showSeatUnavailable() const {
+    std::cout << "That seat is already selected, reserved, or does not exist.\n";
 }

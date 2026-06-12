@@ -17,10 +17,23 @@ add_executable(MovieTicketSystem
         sources/views/ReservationView.cpp
 
         sources/model/User.cpp
-        sources/model/UserContainer.cpp
-        sources/model/Cinema.cpp
         sources/model/Movie.cpp
         sources/model/Session.cpp
+        sources/model/Seat.cpp
+        sources/model/Ticket.cpp
+        sources/model/Payment.cpp
+        sources/model/Reservation.cpp
+
+        sources/mapper/UserMapper.cpp
+        sources/mapper/MovieMapper.cpp
+        sources/mapper/SessionMapper.cpp
+        sources/mapper/SeatMapper.cpp
+        sources/mapper/ReservationMapper.cpp
+
+        sources/repository/MovieTicketRepositoryMemory.cpp
+
+        sources/services/AuthService.cpp
+        sources/services/ReservationService.cpp
 )
 
 target_include_directories(MovieTicketSystem PRIVATE
@@ -28,4 +41,8 @@ target_include_directories(MovieTicketSystem PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/headers/views
         ${CMAKE_CURRENT_SOURCE_DIR}/headers/model
         ${CMAKE_CURRENT_SOURCE_DIR}/headers/exceptions
+        ${CMAKE_CURRENT_SOURCE_DIR}/headers/dto
+        ${CMAKE_CURRENT_SOURCE_DIR}/headers/mapper
+        ${CMAKE_CURRENT_SOURCE_DIR}/headers/repository
+        ${CMAKE_CURRENT_SOURCE_DIR}/headers/services
 )

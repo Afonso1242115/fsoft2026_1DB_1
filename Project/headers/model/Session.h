@@ -2,6 +2,8 @@
 #define SESSION_H
 
 #include <string>
+#include <vector>
+#include "Seat.h"
 
 class Session {
 private:
@@ -10,6 +12,9 @@ private:
     std::string room;
     std::string time;
     double basePrice;
+    std::vector<Seat> seats;
+
+    void createSeats();
 
 public:
     Session(int id,
@@ -23,6 +28,13 @@ public:
     const std::string& getRoom() const;
     const std::string& getTime() const;
     double getBasePrice() const;
+
+    const std::vector<Seat>& getSeats() const;
+
+    bool isSeatAvailable(const std::string& seatCode,
+                         const std::vector<std::string>& selectedSeats) const;
+
+    void reserveSeats(const std::vector<std::string>& selectedSeats);
 
     bool operator==(int id) const;
 };
