@@ -34,6 +34,8 @@ add_executable(MovieTicketSystem
 
         sources/services/AuthService.cpp
         sources/services/ReservationService.cpp
+
+        headers/DTO/SeatDTO.h
 )
 
 target_include_directories(MovieTicketSystem PRIVATE

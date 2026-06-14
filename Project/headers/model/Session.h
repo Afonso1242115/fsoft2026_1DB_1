@@ -17,17 +17,17 @@ private:
     void createSeats();
 
 public:
-    Session(int id,
-            int movieId,
-            const std::string& room,
-            const std::string& time,
-            double basePrice);
+    Session(int id, int movieId, const std::string& room, const std::string& time, double basePrice);
 
     int getId() const;
     int getMovieId() const;
     const std::string& getRoom() const;
     const std::string& getTime() const;
     double getBasePrice() const;
+    const std::vector<Seat>& getSeats() const;
+
+    bool isSeatAvailable(const std::string& seatCode, const std::vector<std::string>& selectedSeats) const;
+    void reserveSeats(const std::vector<std::string>& selectedSeats);
 
     const std::vector<Seat>& getSeats() const;
 
