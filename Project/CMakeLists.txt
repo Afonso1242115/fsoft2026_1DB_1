@@ -34,7 +34,8 @@ add_executable(MovieTicketSystem
 
         sources/services/AuthService.cpp
         sources/services/ReservationService.cpp
-        
+        headers/repository/MovieTicketRepositoryMemory.h
+
 
 )
 
