@@ -9,7 +9,9 @@
 
 class IMovieTicketRepository {
 public:
-    virtual ~IMovieTicketRepository() {}
+    virtual ~IMovieTicketRepository() {
+
+    }
 
     virtual std::vector<User*>& getUsers() = 0;
     virtual std::vector<Movie>& getMovies() = 0;

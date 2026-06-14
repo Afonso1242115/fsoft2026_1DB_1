@@ -16,7 +16,9 @@ public:
     double amount;
     std::vector<std::string> seats;
 
-    ReservationDTO() : id(0), amount(0.0) {}
+    ReservationDTO() : id(0), amount(0.0) {
+
+    }
 };
 
 #endif

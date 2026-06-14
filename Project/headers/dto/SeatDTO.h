@@ -8,9 +8,13 @@ public:
     std::string code;
     bool reserved;
 
-    SeatDTO() : reserved(false) {}
+    SeatDTO() : reserved(false) {
+
+    }
     SeatDTO(const std::string& code, bool reserved)
-        : code(code), reserved(reserved) {}
+        : code(code), reserved(reserved) {
+
+    }
 };
 
 #endif

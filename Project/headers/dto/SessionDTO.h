@@ -11,9 +11,13 @@ public:
     std::string time;
     double basePrice;
 
-    SessionDTO() : id(0), movieId(0), basePrice(0.0) {}
+    SessionDTO() : id(0), movieId(0), basePrice(0.0) {
+
+    }
     SessionDTO(int id, int movieId, const std::string& room, const std::string& time, double basePrice)
-        : id(id), movieId(movieId), room(room), time(time), basePrice(basePrice) {}
+        : id(id), movieId(movieId), room(room), time(time), basePrice(basePrice) {
+
+    }
 };
 
 #endif

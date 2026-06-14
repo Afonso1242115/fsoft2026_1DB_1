@@ -9,9 +9,13 @@ public:
     std::string name;
     std::string email;
 
-    UserDTO() : id(0) {}
+    UserDTO() : id(0) {
+
+    }
     UserDTO(int id, const std::string& name, const std::string& email)
-        : id(id), name(name), email(email) {}
+        : id(id), name(name), email(email) {
+
+    }
 };
 
 #endif
