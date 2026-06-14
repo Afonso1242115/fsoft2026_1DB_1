@@ -1,8 +1,14 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef RESERVATIONMAPPER_H
+#define RESERVATIONMAPPER_H
 
-#ifndef MOVIETICKETSYSTEM_RESERVATIONMAPPER_H
-#define MOVIETICKETSYSTEM_RESERVATIONMAPPER_H
+#include "Reservation.h"
+#include "ReservationDTO.h"
+#include <vector>
 
-#endif //MOVIETICKETSYSTEM_RESERVATIONMAPPER_H
+class ReservationMapper {
+public:
+    static ReservationDTO modelToDTO(const Reservation* reservation);
+    static std::vector<ReservationDTO> listToDTO(const std::vector<Reservation*>& reservations, int userId);
+};
+
+#endif

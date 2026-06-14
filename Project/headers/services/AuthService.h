@@ -1,8 +1,25 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef AUTHSERVICE_H
+#define AUTHSERVICE_H
 
-#ifndef MOVIETICKETSYSTEM_AUTHSERVICE_H
-#define MOVIETICKETSYSTEM_AUTHSERVICE_H
+#include "IMovieTicketRepository.h"
+#include "UserDTO.h"
+#include <string>
 
-#endif //MOVIETICKETSYSTEM_AUTHSERVICE_H
+class AuthService {
+private:
+    IMovieTicketRepository& repository;
+
+    User* searchByEmail(const std::string& email);
+
+public:
+    AuthService(IMovieTicketRepository& repository);
+
+    UserDTO registerUser(const std::string& name,
+                         const std::string& email,
+                         const std::string& password);
+
+    UserDTO login(const std::string& email,
+                  const std::string& password);
+};
+
+#endif
