@@ -56,4 +56,4 @@ int MainView::askAuthenticatedMenuOption() const {
 void MainView::showInvalidOption() const { std::cout << "Invalid option.\n"; }
 void MainView::showGoodbye() const { std::cout << "Goodbye.\n"; }
 void MainView::showLogoutMessage() const { std::cout << "Logged out. See you soon.\n"; }
-void MainView::showError(const std::string& message) const { std::cout << "Error: " << message << "\n"; }}
+void MainView::showError(const std::string& message) const { std::cout << "Error: " << message << "\n"; }
