@@ -10,10 +10,8 @@ private:
 
 public:
     void showWelcome() const;
-
     int askMainMenuOption() const;
     int askAuthenticatedMenuOption() const;
-
     void showInvalidOption() const;
     void showGoodbye() const;
     void showLogoutMessage() const;
