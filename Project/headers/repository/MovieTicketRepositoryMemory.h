@@ -1,8 +1,28 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef MOVIETICKETREPOSITORYMEMORY_H
+#define MOVIETICKETREPOSITORYMEMORY_H
 
-#ifndef MOVIETICKETSYSTEM_MOVIETICKETREPOSITORYMEMORY_H
-#define MOVIETICKETSYSTEM_MOVIETICKETREPOSITORYMEMORY_H
+#include "IMovieTicketRepository.h"
 
-#endif //MOVIETICKETSYSTEM_MOVIETICKETREPOSITORYMEMORY_H
+class MovieTicketRepositoryMemory : public IMovieTicketRepository {
+private:
+    std::vector<User*> users;
+    std::vector<Movie> movies;
+    std::vector<Session> sessions;
+    std::vector<Reservation*> reservations;
+    int nextUserId;
+    int nextReservationId;
+
+public:
+    MovieTicketRepositoryMemory();
+    ~MovieTicketRepositoryMemory();
+
+    std::vector<User*>& getUsers();
+    std::vector<Movie>& getMovies();
+    std::vector<Session>& getSessions();
+    std::vector<Reservation*>& getReservations();
+
+    int getNextUserId();
+    int getNextReservationId();
+};
+
+#endif
