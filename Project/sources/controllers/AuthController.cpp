@@ -1,61 +1,47 @@
 #include "AuthController.h"
+#include "User.h"
 
-AuthController::AuthController(UserContainer& userContainer)
-    : userContainer(userContainer) {
+AuthController::AuthController(AuthService& authService)
+    : authService(authService) {
 }
 
 void AuthController::registerUser() {
+    authView.showRegisterHeader();
+
     std::string name;
     std::string email;
     std::string password;
 
-    view.showRegisterHeader();
-
-    //stays in this loop until the name is valid.
     while (true) {
-        name = view.askName();
-
-        if (User::isNameValid(name)) {
-            break;
-        }
-
-        view.showInvalidName();
+        name = authView.askName();
+        if (User::isNameValid(name)) break;
+        authView.showInvalidName();
     }
 
-    //stays in this loop until the email is valid.
     while (true) {
-        email = view.askEmail();
-
-        if (User::isEmailValid(email)) {
-            break;
-        }
-
-        view.showInvalidEmail();
+        email = authView.askEmail();
+        if (User::isEmailValid(email)) break;
+        authView.showInvalidEmail();
     }
 
-    //stays in this loop until the password is valid.
     while (true) {
-        password = view.askPassword();
-
-        if (User::isPasswordValid(password)) {
-            break;
-        }
-
-        view.showInvalidPassword();
+        password = authView.askPassword();
+        if (User::isPasswordValid(password)) break;
+        authView.showInvalidPassword();
     }
 
-    userContainer.add(name, email, password);
-    view.showRegisterSuccess();
+    authService.registerUser(name, email, password);
+    authView.showRegisterSuccess();
 }
 
-User* AuthController::loginUser() {
-    view.showLoginHeader();
+UserDTO AuthController::loginUser() {
+    authView.showLoginHeader();
 
-    std::string email = view.askEmail();
-    std::string password = view.askPassword();
+    std::string email = authView.askEmail();
+    std::string password = authView.askPassword();
 
-    User* user = userContainer.login(email, password);
-    view.showLoginSuccess(user);
+    UserDTO user = authService.login(email, password);
+    authView.showLoginSuccess(user);
 
     return user;
 }
