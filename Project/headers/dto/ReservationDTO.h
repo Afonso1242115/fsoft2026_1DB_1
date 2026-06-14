@@ -1,8 +1,22 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef RESERVATIONDTO_H
+#define RESERVATIONDTO_H
 
-#ifndef MOVIETICKETSYSTEM_RESERVATIONDTO_H
-#define MOVIETICKETSYSTEM_RESERVATIONDTO_H
+#include <string>
+#include <vector>
 
-#endif //MOVIETICKETSYSTEM_RESERVATIONDTO_H
+class ReservationDTO {
+public:
+    int id;
+    std::string userName;
+    std::string movieTitle;
+    std::string sessionTime;
+    std::string room;
+    std::string ticketType;
+    std::string paymentMethod;
+    double amount;
+    std::vector<std::string> seats;
+
+    ReservationDTO() : id(0), amount(0.0) {}
+};
+
+#endif

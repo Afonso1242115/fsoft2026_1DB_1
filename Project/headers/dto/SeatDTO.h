@@ -1,8 +1,16 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef SEATDTO_H
+#define SEATDTO_H
 
-#ifndef MOVIETICKETSYSTEM_SEATDTO_H
-#define MOVIETICKETSYSTEM_SEATDTO_H
+#include <string>
 
-#endif //MOVIETICKETSYSTEM_SEATDTO_H
+class SeatDTO {
+public:
+    std::string code;
+    bool reserved;
+
+    SeatDTO() : reserved(false) {}
+    SeatDTO(const std::string& code, bool reserved)
+        : code(code), reserved(reserved) {}
+};
+
+#endif

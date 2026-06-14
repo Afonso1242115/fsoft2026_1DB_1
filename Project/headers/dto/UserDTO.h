@@ -1,8 +1,17 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef USERDTO_H
+#define USERDTO_H
 
-#ifndef MOVIETICKETSYSTEM_USERDTO_H
-#define MOVIETICKETSYSTEM_USERDTO_H
+#include <string>
 
-#endif //MOVIETICKETSYSTEM_USERDTO_H
+class UserDTO {
+public:
+    int id;
+    std::string name;
+    std::string email;
+
+    UserDTO() : id(0) {}
+    UserDTO(int id, const std::string& name, const std::string& email)
+        : id(id), name(name), email(email) {}
+};
+
+#endif
