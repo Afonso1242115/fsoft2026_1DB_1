@@ -29,6 +29,13 @@ public:
     bool isSeatAvailable(const std::string& seatCode, const std::vector<std::string>& selectedSeats) const;
     void reserveSeats(const std::vector<std::string>& selectedSeats);
 
+    const std::vector<Seat>& getSeats() const;
+
+    bool isSeatAvailable(const std::string& seatCode,
+                         const std::vector<std::string>& selectedSeats) const;
+
+    void reserveSeats(const std::vector<std::string>& selectedSeats);
+
     bool operator==(int id) const;
 };
 

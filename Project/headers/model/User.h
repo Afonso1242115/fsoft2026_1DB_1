@@ -11,10 +11,7 @@ private:
     std::string password;
 
 public:
-    User(int id,
-         const std::string& name,
-         const std::string& email,
-         const std::string& password);
+    User(int id, const std::string& name, const std::string& email, const std::string& password);
 
     static bool isNameValid(const std::string& name);
     static bool isEmailValid(const std::string& email);
@@ -27,7 +24,6 @@ public:
     void setName(const std::string& name);
     void setEmail(const std::string& email);
     void setPassword(const std::string& password);
-
     bool checkPassword(const std::string& password) const;
 
     bool operator==(int id) const;

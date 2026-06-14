@@ -1,5 +1,7 @@
 #include "ReservationController.h"
 #include "Exceptions.h"
+#include <cctype>
+#include "Exceptions.h"
 
 ReservationController::ReservationController(Cinema& cinema)
     : cinema(cinema) {
@@ -51,11 +53,64 @@ void ReservationController::makeReservation(User* loggedUser) {
 
     Session* session = selectSession(movie);
 
+    int ticketQuantity = selectTicketQuantity();
 
+    std::vector<std::string> selectedSeats = selectSeats(session, ticketQuantity);
+
+    reservationView.showMessage("Next step: select ticket type and payment.");
 }
 
 void ReservationController::viewMyReservations(User* loggedUser) const {
     reservationView.showMyReservationsHeader();
 
     cinema.listReservationsByUser(loggedUser);
+}
+
+std::string ReservationController::formatSeatCode(const std::string& seatCode) const {
+    std::string formatted;
+
+    for (char character : seatCode) {
+        if (!std::isspace(static_cast<unsigned char>(character))) {
+            formatted += static_cast<char>(
+                std::toupper(static_cast<unsigned char>(character))
+            );
+        }
+    }
+
+    return formatted;
+}
+
+int ReservationController::selectTicketQuantity() const {
+    int quantity = reservationView.askTicketQuantity();
+
+    if (quantity < 1 || quantity > 8) {
+        throw InvalidDataException("Ticket quantity must be between 1 and 8");
+    }
+
+    return quantity;
+}
+
+std::vector<std::string> ReservationController::selectSeats(Session* session,
+                                                            int ticketQuantity) const {
+    std::vector<std::string> selectedSeats;
+
+    while (static_cast<int>(selectedSeats.size()) < ticketQuantity) {
+        reservationView.showSeats(session->getSeats(), selectedSeats);
+        reservationView.showSelectedSeats(selectedSeats);
+
+        std::string seatCode = formatSeatCode(
+            reservationView.askSeatCode(static_cast<int>(selectedSeats.size()) + 1)
+        );
+
+        if (session->isSeatAvailable(seatCode, selectedSeats)) {
+            selectedSeats.push_back(seatCode);
+            reservationView.showSeatSelected(seatCode);
+        } else {
+            reservationView.showSeatUnavailable();
+        }
+    }
+
+    reservationView.showSeats(session->getSeats(), selectedSeats);
+
+    return selectedSeats;
 }
