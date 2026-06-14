@@ -1,8 +1,14 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef SESSIONMAPPER_H
+#define SESSIONMAPPER_H
 
-#ifndef MOVIETICKETSYSTEM_SESSIONMAPPER_H
-#define MOVIETICKETSYSTEM_SESSIONMAPPER_H
+#include "Session.h"
+#include "SessionDTO.h"
+#include <vector>
 
-#endif //MOVIETICKETSYSTEM_SESSIONMAPPER_H
+class SessionMapper {
+public:
+    static SessionDTO modelToDTO(const Session& session);
+    static std::vector<SessionDTO> listToDTO(const std::vector<Session>& sessions);
+};
+
+#endif

@@ -1,8 +1,14 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef MOVIEMAPPER_H
+#define MOVIEMAPPER_H
 
-#ifndef MOVIETICKETSYSTEM_MOVIEMAPPER_H
-#define MOVIETICKETSYSTEM_MOVIEMAPPER_H
+#include "Movie.h"
+#include "MovieDTO.h"
+#include <vector>
 
-#endif //MOVIETICKETSYSTEM_MOVIEMAPPER_H
+class MovieMapper {
+public:
+    static MovieDTO modelToDTO(const Movie& movie);
+    static std::vector<MovieDTO> listToDTO(const std::vector<Movie>& movies);
+};
+
+#endif

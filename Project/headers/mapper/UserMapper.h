@@ -1,8 +1,12 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef USERMAPPER_H
+#define USERMAPPER_H
 
-#ifndef MOVIETICKETSYSTEM_USERMAPPER_H
-#define MOVIETICKETSYSTEM_USERMAPPER_H
+#include "User.h"
+#include "UserDTO.h"
 
-#endif //MOVIETICKETSYSTEM_USERMAPPER_H
+class UserMapper {
+public:
+    static UserDTO modelToDTO(const User* user);
+};
+
+#endif

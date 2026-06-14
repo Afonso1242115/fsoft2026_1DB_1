@@ -1,8 +1,14 @@
-//
-// Created by Afonso on 11/06/2026.
-//
+#ifndef SEATMAPPER_H
+#define SEATMAPPER_H
 
-#ifndef MOVIETICKETSYSTEM_SEATMAPPER_H
-#define MOVIETICKETSYSTEM_SEATMAPPER_H
+#include "Seat.h"
+#include "SeatDTO.h"
+#include <vector>
 
-#endif //MOVIETICKETSYSTEM_SEATMAPPER_H
+class SeatMapper {
+public:
+    static SeatDTO modelToDTO(const Seat& seat);
+    static std::vector<SeatDTO> listToDTO(const std::vector<Seat>& seats);
+};
+
+#endif
