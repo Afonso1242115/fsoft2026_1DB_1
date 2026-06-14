@@ -21,6 +21,8 @@ add_executable(MovieTicketSystem
         sources/model/Cinema.cpp
         sources/model/Movie.cpp
         sources/model/Session.cpp
+
+        headers/DTO/SeatDTO.h
 )
 
 target_include_directories(MovieTicketSystem PRIVATE
