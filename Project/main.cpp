@@ -1,8 +1,7 @@
 #include "MainController.h"
 
 int main() {
-    MainController mainController;
-    mainController.run();
-
+    MainController controller;
+    controller.run();
     return 0;
 }
