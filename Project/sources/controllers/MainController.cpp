@@ -2,10 +2,11 @@
 #include <exception>
 
 MainController::MainController()
-    : loggedUser(nullptr),
-      authController(userContainer),
-      reservationController(cinema) {
-    cinema.seedData();
+    : authService(repository),
+      reservationService(repository),
+      authController(authService),
+      reservationController(reservationService) {
+    loggedIn = false;
 }
 
 void MainController::run() {
@@ -27,11 +28,8 @@ void MainController::mainMenu() {
 
                 case 2:
                     loggedUser = authController.loginUser();
-
-                    if (loggedUser != nullptr) {
-                        authenticatedMenu();
-                    }
-
+                    loggedIn = true;
+                    authenticatedMenu();
                     break;
 
                 case 0:
@@ -45,7 +43,6 @@ void MainController::mainMenu() {
         } catch (const std::exception& exception) {
             mainView.showError(exception.what());
         }
-
     } while (option != 0);
 }
 
@@ -58,15 +55,15 @@ void MainController::authenticatedMenu() {
         try {
             switch (option) {
                 case 1:
-                    reservationController.makeReservation(loggedUser);
+                    reservationController.makeReservation(loggedUser.id);
                     break;
 
                 case 2:
-                    reservationController.viewMyReservations(loggedUser);
+                    reservationController.viewMyReservations(loggedUser.id);
                     break;
 
                 case 3:
-                    loggedUser = nullptr;
+                    loggedIn = false;
                     mainView.showLogoutMessage();
                     break;
 
@@ -77,6 +74,5 @@ void MainController::authenticatedMenu() {
         } catch (const std::exception& exception) {
             mainView.showError(exception.what());
         }
-
-    } while (loggedUser != nullptr);
+    } while (loggedIn);
 }
